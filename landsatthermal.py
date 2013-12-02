@@ -26,9 +26,11 @@ if __name__ == '__main__':
 ##from arcpy.sa import *      # Imports modules from ArcGIS Spatial Analyst
 import os
 import glob                 # Imports Module that looks through directories
+import numpy
 from osgeo import gdal
 from osgeo.gdalnumeric import *
 from osgeo.gdalconst import *
+
 
 # Function to parse through a Landsat 5 file folder downloaded from USGS
 # Bulk Downloader, identify the correct thermal image, identify its metadata,
@@ -100,7 +102,7 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
     # kelvin
     k1 = 607.76
     k2 = 1260.56
-    tempkelvin = k2 / (arcpy.sa.Ln((k1/SLR)+1))
+    tempkelvin = k2 / (np.log((k1/SLR)+1))
 
 
     #This equation converts temperature in degrees kelvin to temperature in
@@ -114,7 +116,7 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
     dataset.RasterYSize, 1, band.DataType)
     CopyDatasetInfo(dataset,kelvinOut)
     bandOutK = kelvinOut.GetRasterBand(1)
-    BandWriteArray(bandOut,tempkelvin)
+    BandWriteArray(bandOutK,tempkelvin)
 
     # Writes the celcius output file
     driver = gdal.GetDriverByName('GTiff')  # Calls the GDAL tiff creator
@@ -122,7 +124,7 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
     dataset.RasterYSize, 1, band.DataType)
     CopyDatasetInfo(dataset,celciusOut)
     bandOutC = celciusOut.GetRasterBand(1)
-    BandWriteArray(bandOut,tempcelcius)
+    BandWriteArray(bandOutC,tempcelcius)
 
 
     ##arcpy.CheckInExtension('spatial') # This releases the hold on the license
