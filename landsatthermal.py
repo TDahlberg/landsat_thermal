@@ -22,8 +22,8 @@ if __name__ == '__main__':
                   #Converts from TOA radiance > SL Radiance > Temperature in K
 
 
-import arcpy                # Imports the ArcGIS Python bindings
-from arcpy.sa import *      # Imports modules from ArcGIS Spatial Analyst
+##import arcpy                # Imports the ArcGIS Python bindings
+##from arcpy.sa import *      # Imports modules from ArcGIS Spatial Analyst
 import os
 import glob                 # Imports Module that looks through directories
 from osgeo import gdal
@@ -45,11 +45,11 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
 
     newpath = inputrasterdirectory+'\\'+'results'
     if not os.path.exists(newpath): os.makedirs(newpath) # Creates directory
-    arcpy.env.overwriteOutput = True                     #turns on overwriting
+    ##arcpy.env.overwriteOutput = True                     #turns on overwriting
     ##arcpy.CreateFolder_management(inputrasterdirectory,'work')
-    arcpy.env.workspace = arcpy.env.ScratchWorkspace = inputrasterdirectory + \
+    ##arcpy.env.workspace = arcpy.env.ScratchWorkspace = inputrasterdirectory + \
     '\\' + 'results'
-    arcpy.CheckOutExtension('spatial')
+    ##arcpy.CheckOutExtension('spatial')
 
 
 
@@ -71,14 +71,20 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
 
     # Searches directory for landsat thermal images matching band 6
     for item in glob.glob(inputrasterdirectory+'\*B6*.TIF'):
-        band6 = arcpy.Raster(item)                         # opens raster
+        dataset = gdal.Open(item, GA_ReadOnly)  # opens raster in GDAL
+    outFile = "output.tiff" #creates an output file placeholder
 
+    # Reads the dataset into a band
+    band = dataset.GetRasterBand(1)  #Retreives band 1 from dataset
+
+    # Reads the data into a Numpy Array
+    data = BandReadAsArray(band)
 
     # Converts the raster image from DN values to top-of-atmosphere
     # radiance and stores it in memory
     qcalmax = 255     # Given
     qcalmin = 1       # Given
-    TOA = (((lmax - lmin) / (qcalmax - qcalmin)) * (band6 - qcalmin)) + lmin
+    TOA = (((lmax - lmin) / (qcalmax - qcalmin)) * (data - qcalmin)) + lmin
 
 
     # Converts top-of-atmosphere radiance to surface-leaving radiance and \
@@ -102,10 +108,24 @@ def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
     tempcelcius = tempkelvin - 273.15
 
 
-    # Saves the thermal results
-    tempcelcius.save('temp_c.tif')
-    tempkelvin.save('temp_k.tif')
-    arcpy.CheckInExtension('spatial') # This releases the hold on the license
-    print "Thermal conversion finished"
+    # Writes the kelvin output file
+    driver = gdal.GetDriverByName('GTiff')  # Calls the GDAL tiff creator
+    kelvinOut = driver.Create("temp_k.tiff", dataset.RasterXSize,
+    dataset.RasterYSize, 1, band.DataType)
+    CopyDatasetInfo(dataset,kelvinOut)
+    bandOutK = kelvinOut.GetRasterBand(1)
+    BandWriteArray(bandOut,tempkelvin)
+
+    # Writes the celcius output file
+    driver = gdal.GetDriverByName('GTiff')  # Calls the GDAL tiff creator
+    celciusOut = driver.Create("temp_c.tiff", dataset.RasterXSize,
+    dataset.RasterYSize, 1, band.DataType)
+    CopyDatasetInfo(dataset,celciusOut)
+    bandOutC = celciusOut.GetRasterBand(1)
+    BandWriteArray(bandOut,tempcelcius)
+
+
+    ##arcpy.CheckInExtension('spatial') # This releases the hold on the license
+    ##print "Thermal conversion finished"
 
 print landsatthermal('D:\Landsat Downloader\Downloads\LE70290302002347EDC00.tar\LE70290302002347EDC00',2.84,4.49)
