@@ -22,8 +22,8 @@ if __name__ == '__main__':
                   #Converts from TOA radiance > SL Radiance > Temperature in K
 
 
-##import arcpy                # Imports the ArcGIS Python bindings
-##from arcpy.sa import *      # Imports modules from ArcGIS Spatial Analyst
+import arcpy                # Imports the ArcGIS Python bindings
+from arcpy.sa import *      # Imports modules from ArcGIS Spatial Analyst
 import os
 import glob                 # Imports Module that looks through directories
 from osgeo import gdal
@@ -43,13 +43,13 @@ from osgeo.gdalconst import *
 
 def landsatthermal(inputrasterdirectory,radianceup,radiancedown):
 
-    newpath = inputrasterdirectory+'\\'+'work'
+    newpath = inputrasterdirectory+'\\'+'results'
     if not os.path.exists(newpath): os.makedirs(newpath) # Creates directory
-    ##arcpy.env.overwriteOutput = True                     #turns on overwriting
+    arcpy.env.overwriteOutput = True                     #turns on overwriting
     ##arcpy.CreateFolder_management(inputrasterdirectory,'work')
-    ##arcpy.env.workspace = arcpy.env.ScratchWorkspace = inputrasterdirectory + \
-    ##'\\' + 'work'
-    ##arcpy.CheckOutExtension('spatial')
+    arcpy.env.workspace = arcpy.env.ScratchWorkspace = inputrasterdirectory + \
+    '\\' + 'results'
+    arcpy.CheckOutExtension('spatial')
 
 
 
