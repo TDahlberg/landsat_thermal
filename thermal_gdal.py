@@ -98,7 +98,9 @@ class GDALCalcLST (object):
 
                 SLR = ((TOA - radianceup)/(emissivity * transmissivity)) - \
                 ((1 - emissivity) / (emissivity)) * radiancedown
-
+                
+                # Converts SLR results to just above 0 if negative or = 0. This is
+                # because math.log cannot be run on 0 or - numbers. 
                 if SLR <= 0:
                    SLR = 0.0001
                 else:
@@ -107,17 +109,9 @@ class GDALCalcLST (object):
                 # Converts top-of-atmosphere radiance to Temperature in Kelvin
                 k1 = 607.76
                 k2 = 1260.56
-                ##prelog = (k1/SLR) + 1
-                ##postlog = math.log(prelog)
-                ##tempkelvin = k2 / postlog
-                '''
-                #TODO: Need to reclassify the values from SLR to just above 0
-                before passing it to tempkelvin, because you can't do the
-                natural log of a negative number, and there's nowhere in the
-                kelvin calculation where a negative would result.
-                '''
-                # Becareful of zero divide
                 tempkelvin = k2 / math.log((k1/SLR)+1)
+                # Becareful of zero divide
+                
 
                 # Add the current pixel to the output line
                 outputLine = outputLine + struct.pack('f', tempkelvin)
