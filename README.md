@@ -1,15 +1,18 @@
 lansdsat_thermal
 ================
 
+Credit: Tyler Dahlberg, Ryan Williams, Mike Cecil
+	International Development, Community, and Environment Department
+	Clark University, Worcester, MA 01610
+
+
 ArcMap toolbox that converts Landsat 5 and 7 band 6 imagery downloaded from the glovis.usgs.gov from Digital Numbers to Land Surface Temperature Tiffs in Kelvin and Celcius. Also calculates NDVI images from red and nir bands, and also performs a correlation between NDVI and land surface temperature.
 
 
 Requires 3 input parameters:
   
   	rasterinputdirectory = directory where the unzipped directory of Landsat images is located 
-  
   	radianceup = upwelling radiance, parameter derived from NASA Atmospheric Parameter Calculator
-  
   	radiancedown = downwelling radiance, "" ""
   
   
