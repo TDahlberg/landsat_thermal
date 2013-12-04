@@ -1,7 +1,11 @@
 lansdsat_thermal
 ================
 
-Credit: Tyler Dahlberg, Ryan Williams, Mike Cecil
+Credit: 
+
+	Tyler Dahlberg 
+	Ryan Williams
+	Mike Cecil
 	
 	International Development, Community, and Environment Department
 	Clark University, Worcester, MA 01610
