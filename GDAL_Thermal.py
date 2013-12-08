@@ -8,9 +8,7 @@
 # of the original DN value from Landsat
 # 5 or 7 imagery.
 #
-# Author: Tyler Dahlberg
-# Email: tyladee@gmail.com
-# Date: 12/6/2013
+# Author: Tyler Dahlberg,
 #######################################
 
 # Import required libraries from python
