@@ -8,7 +8,7 @@
 # of the original DN value from Landsat
 # 5 or 7 imagery.
 #
-# Author: Tyler Dahlberg,
+# Author: Tyler Dahlberg
 #######################################
 
 # Import required libraries from python
@@ -122,7 +122,7 @@ class GDALCalcLST(object):
 
 
     # The function from which the script runs.
-    def monkey(self):
+    def run(self):
 
     #Input parameters:
         # Full path to input thermal image
@@ -149,4 +149,4 @@ class GDALCalcLST(object):
 # Start the script by calling the run function.
 if __name__ == '__main__':
     obj = GDALCalcLST()
-    obj.monkey()
+    obj.run()
