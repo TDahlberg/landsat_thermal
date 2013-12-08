@@ -130,7 +130,7 @@ class GDALCalcLST(object):
         # Full path with desired name of LST output image
         outFilePath = 'D:\Landsat Downloader\Downloads\LE70290302002347EDC00.tar\LE70290302002347EDC00\lst_k.tif'
         # Upwelling Radiance from NASA Atmospheric Parameter Calculator
-        radianceup = 2.
+        radianceup = 2.2
         # Downwelling Radiance from NASA Atmospheric Parameter Calculator
         radiancedown = 4.2
         # Lowest Radiance value from thermal image metadata
