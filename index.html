@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=640">
+
+    <link rel="stylesheet" href="stylesheets/core.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+
+    <script type="text/javascript" src="javascripts/modernizr.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#main_content').headsmart()
+      })
+    </script>
+    <title>Lansdsat Thermal Converter by TDahlberg</title>
+  </head>
+
+  <body>
+    <a id="forkme_banner" href="https://github.com/TDahlberg/lansdsat_thermal">View on GitHub</a>
+    <div class="shell">
+
+      <header>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <h1>Lansdsat Thermal Converter</h1>
+            <h2>Converts Landsat 5 and 7 band 6 imagery downloaded form the glovis.usgs.gov Bulk Download Application from Digital Numbers to Land Surface Temperature Tiffs in Kelvin and Celcius using ArcPy.</h2>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+      </header>
+
+      <section id="downloads">
+        <span class="inner">
+          <a href="https://github.com/TDahlberg/lansdsat_thermal/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/TDahlberg/lansdsat_thermal/tarball/master" class="tgz"><em>download</em> .TGZ</a>
+        </span>
+      </section>
+
+
+      <span class="banner-fix"></span>
+
+
+      <section id="main_content">
+        <h3>
+<a id="python-utility-for-converting-landsat-5-and-7-thermal-bands-from-digital-numbers-to-land-surface-temperature-in-degrees-kelvin-and-degrees-celcisus" class="anchor" href="#python-utility-for-converting-landsat-5-and-7-thermal-bands-from-digital-numbers-to-land-surface-temperature-in-degrees-kelvin-and-degrees-celcisus" aria-hidden="true"><span class="octicon octicon-link"></span></a>Python utility for converting Landsat 5 and 7 thermal bands from Digital Numbers to Land Surface Temperature in Degrees Kelvin and Degrees Celcisus</h3>
+
+<h3>
+<a id="why-use-this" class="anchor" href="#why-use-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>Why use this?</h3>
+
+<p>Have you ever wanted to just quickly convert a Landsat thermal band image from digital number to a more audience-friendly land-surface temperature, but didn't know how, didn't want to go through all the trouble, or didn't want to do it in some proprietary desktop GIS or remote sensing suite? Sure you have. That's what I made this for.</p>
+
+<h3>
+<a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to use</h3>
+
+<p>Clone to desktop, stick the script in the folder where the extracted Landsat Geotiffs are located. Make sure to examine the metadata and enter the correct variable values into the bottom of the python script. Run it. If everything goes well it may look as if the script is unresponsive for a minute. Don't worry--magic is happening and you'll soon be the proud owner of a beaming baby LST image.</p>
+      </section>
+
+      <footer>
+        <span class="ribbon-outer">
+          <span class="ribbon-inner">
+            <p>this project by <a href="https://github.com/TDahlberg">TDahlberg</a> can be found on <a href="https://github.com/TDahlberg/lansdsat_thermal">GitHub</a></p>
+          </span>
+          <span class="left-tail"></span>
+          <span class="right-tail"></span>
+        </span>
+        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
+        <span class="octocat"></span>
+      </footer>
+
+    </div>
+
+    
+  </body>
+</html>
